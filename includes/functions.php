@@ -33,4 +33,34 @@ function get_posts($user_id = 0) {
 	} else {
 		return db_query("SELECT posts.*, users.name, users.login, users.avatar FROM `posts` JOIN `users` ON users.id = posts.user_id;");
 	}
+<<<<<<< Updated upstream
 }
+=======
+
+	if ($auth_data['pass'] !== $auth_data['pass2']) {
+		$_SESSION['error'] = 'Пароли не совпадают ';
+		header('Location: ' . get_url('register.php'));
+		die;
+	}
+
+	if (add_user($auth_data['login'], $auth_data['pass'])) {
+		header('Location: ' . get_url(''));
+		die;
+	}
+}
+
+function login($auth_data) {
+
+}
+
+function get_error_message()
+{
+	$error = '';
+	if (!empty($_SESSION['error']) && isset($_SESSION['error'])) {
+		$error = $_SESSION['error'];
+		$_SESSION['error'] = '';
+	}
+
+	return $error;
+}
+>>>>>>> Stashed changes
