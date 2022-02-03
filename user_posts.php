@@ -1,6 +1,12 @@
 <?php
 include_once "includes/functions.php";
-$posts = get_posts($user_id);
+$id = 0;
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+	$id = $_GET['id'];
+}
+$posts = get_posts($id);
+$title = "Твиты пользователя @" . $posts[0]['login'];
+
 include_once "includes/header.php";
 include_once "includes/tweet_form.php";
 include_once "includes/posts.php";
